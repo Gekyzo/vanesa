@@ -1,0 +1,123 @@
+{
+  "movies": [
+    {
+      "id": "seabiscuit",
+      "title": "Seabiscuit, más allá de la leyenda",
+      "titleOriginal": "Seabiscuit",
+      "year": 2003,
+      "director": "Gary Ross",
+      "synopsis": "Historia del legendario caballo de carreras Seabiscuit y su improbable victoria durante la Gran Depresión.",
+      "poster": "https://image.tmdb.org/t/p/w500/gN3lbmRW3cN0qJFJ8JBwJf5kRxk.jpg",
+      "rating": 7.3,
+      "trailerUrl": "https://www.youtube.com/watch?v=bxQBZN6aGR4",
+      "streamingLinks": [
+        {
+          "platform": "Amazon Prime",
+          "url": "https://www.amazon.com/Seabiscuit/dp/B000VDDP7W",
+          "available": true
+        }
+      ],
+      "genre": ["Drama", "Deportes"]
+    },
+    {
+      "id": "spirit",
+      "title": "Spirit: El corcel indomable",
+      "titleOriginal": "Spirit: Stallion of the Cimarron",
+      "year": 2002,
+      "director": "Kelly Asbury, Lorna Cook",
+      "synopsis": "Un mustang salvaje lucha por mantener su libertad en el Viejo Oeste.",
+      "poster": "https://image.tmdb.org/t/p/w500/v7lL7HHQ6nnC5WwAsK4KhnqkYwk.jpg",
+      "rating": 7.2,
+      "trailerUrl": "https://www.youtube.com/watch?v=RfRMYOq8nmc",
+      "streamingLinks": [
+        {
+          "platform": "Netflix",
+          "url": "https://www.netflix.com",
+          "available": false
+        },
+        {
+          "platform": "Amazon Prime",
+          "url": "https://www.amazon.com/Spirit-Stallion-Cimarron/dp/B000I5V7BI",
+          "available": true
+        }
+      ],
+      "genre": ["Animación", "Aventura", "Familia"]
+    },
+    {
+      "id": "war-horse",
+      "title": "Caballo de batalla",
+      "titleOriginal": "War Horse",
+      "year": 2011,
+      "director": "Steven Spielberg",
+      "synopsis": "La historia de un caballo y su joven dueño separados por la Primera Guerra Mundial.",
+      "poster": "https://image.tmdb.org/t/p/w500/bK1ognWCo6OX9tRaIbUMKPIDC7m.jpg",
+      "rating": 7.2,
+      "trailerUrl": "https://www.youtube.com/watch?v=4c6UvPPR9nA",
+      "streamingLinks": [
+        {
+          "platform": "Disney+",
+          "url": "https://www.disneyplus.com",
+          "available": true
+        }
+      ],
+      "genre": ["Drama", "Bélico"]
+    },
+    {
+      "id": "secretariat",
+      "title": "Secretariat",
+      "titleOriginal": "Secretariat",
+      "year": 2010,
+      "director": "Randall Wallace",
+      "synopsis": "La historia real del caballo de carreras que se convirtió en leyenda al ganar la Triple Corona en 1973.",
+      "poster": "https://image.tmdb.org/t/p/w500/i6mTZ4fXzmYlT7yFxWvhpE3NIqH.jpg",
+      "rating": 7.2,
+      "trailerUrl": "https://www.youtube.com/watch?v=KUeBAP_G_8k",
+      "streamingLinks": [
+        {
+          "platform": "Disney+",
+          "url": "https://www.disneyplus.com",
+          "available": true
+        }
+      ],
+      "genre": ["Drama", "Deportes"]
+    },
+    {
+      "id": "black-stallion",
+      "title": "El corcel negro",
+      "titleOriginal": "The Black Stallion",
+      "year": 1979,
+      "director": "Carroll Ballard",
+      "synopsis": "Un joven forma un vínculo extraordinario con un semental salvaje después de sobrevivir a un naufragio.",
+      "poster": "https://image.tmdb.org/t/p/w500/aKFOjDYm6r1M7HiKP5n5kC3hJYr.jpg",
+      "rating": 7.4,
+      "trailerUrl": "https://www.youtube.com/watch?v=MfZ9_fTjg0I",
+      "streamingLinks": [
+        {
+          "platform": "Amazon Prime",
+          "url": "https://www.amazon.com/Black-Stallion/dp/B000I5V7BI",
+          "available": true
+        }
+      ],
+      "genre": ["Drama", "Aventura", "Familia"]
+    },
+    {
+      "id": "hidalgo",
+      "title": "Hidalgo",
+      "titleOriginal": "Hidalgo",
+      "year": 2004,
+      "director": "Joe Johnston",
+      "synopsis": "Un cowboy americano y su mustang compiten en una carrera de resistencia en Arabia.",
+      "poster": "https://image.tmdb.org/t/p/w500/2KmVGWpckbEEZpFYzLLr6R7tTa7.jpg",
+      "rating": 6.7,
+      "trailerUrl": "https://www.youtube.com/watch?v=oKgVNpkERxQ",
+      "streamingLinks": [
+        {
+          "platform": "Disney+",
+          "url": "https://www.disneyplus.com",
+          "available": true
+        }
+      ],
+      "genre": ["Aventura", "Drama", "Acción"]
+    }
+  ]
+}

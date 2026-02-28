@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "horses": "Caballos",
+    "spanishBreeds": "Razas Españolas",
+    "worldBreeds": "Razas del Mundo",
+    "coats": "Capas de Caballos",
+    "horsesInCulture": "Caballos en la Cultura",
+    "dance": "Baile",
+    "music": "Música",
+    "admin": "Admin",
+    "manageCoats": "Gestionar Capas",
+    "manageCategories": "Gestionar Categorías",
+    "logo": "Into This"
+  },
+  "buttons": {
+    "explore": "Explorar",
+    "viewAll": "Ver todo",
+    "viewAllBreeds": "Ver todas las razas",
+    "backToBreeds": "Volver a las razas",
+    "watchTrailer": "Ver Tráiler",
+    "calculate": "Calcular",
+    "calculateProbabilities": "Calcular Probabilidades",
+    "signIn": "Iniciar Sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "goToCoats": "Ir a Capas",
+    "goToCategories": "Ir a Categorías"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "calculating": "Calculando...",
+    "error": "Error",
+    "success": "Éxito",
+    "all": "Todo",
+    "search": "Buscar",
+    "filters": "Filtros",
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "description": "Descripción",
+    "category": "Categoría",
+    "uncategorized": "Sin categoría",
+    "unknown": "Desconocido",
+    "varies": "Varía"
+  },
+  "bloodTypes": {
+    "bloodType": "Tipo de Sangre",
+    "allBloodTypes": "Todos los Tipos de Sangre",
+    "allTypes": "Todos los Tipos",
+    "hotBlood": "Sangre Caliente",
+    "warmBlood": "Sangre Templada",
+    "coldBlood": "Sangre Fría",
+    "blood": "Sangre"
+  },
+  "badges": {
+    "spanishBreed": "Raza Española"
+  },
+  "auth": {
+    "orContinueWith": "O continuar con",
+    "google": "Google",
+    "facebook": "Facebook"
+  }
+}

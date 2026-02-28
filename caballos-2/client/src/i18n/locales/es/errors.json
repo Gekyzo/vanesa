@@ -1,0 +1,18 @@
+{
+  "validation": {
+    "emailInvalid": "Dirección de correo electrónico inválida",
+    "passwordRequired": "La contraseña es obligatoria",
+    "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+    "passwordsMismatch": "Las contraseñas no coinciden",
+    "nameRequired": "El nombre es obligatorio",
+    "fieldRequired": "Este campo es obligatorio"
+  },
+  "api": {
+    "loginFailed": "Error al iniciar sesión",
+    "registrationFailed": "Error al registrarse",
+    "logoutFailed": "Error al cerrar sesión",
+    "authError": "Error de autenticación",
+    "internalError": "Error interno del servidor",
+    "failedToLoad": "Error al cargar"
+  }
+}

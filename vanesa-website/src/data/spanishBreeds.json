@@ -1,0 +1,48 @@
+{
+  "breeds": [
+    {
+      "id": "pre",
+      "name": "Pura Raza Española (PRE)",
+      "image": "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=800",
+      "country": "España",
+      "bloodType": "caliente",
+      "temperament": "equilibrado",
+      "height": 155,
+      "uses": ["doma clásica", "alta escuela", "paseo"],
+      "history": "El Pura Raza Española, también conocido como caballo andaluz, es una de las razas equinas más antiguas y prestigiosas del mundo. Con siglos de historia, este caballo ha sido apreciado por la realeza y los jinetes de alta escuela por su belleza, nobleza y capacidad para la doma clásica."
+    },
+    {
+      "id": "hispano-arabe",
+      "name": "Hispano-Árabe",
+      "image": "https://images.unsplash.com/photo-1598964356161-754cc07fec2e?w=800",
+      "country": "España",
+      "bloodType": "caliente",
+      "temperament": "enérgico",
+      "height": 160,
+      "uses": ["raid", "salto", "paseo"],
+      "history": "El Hispano-Árabe es el resultado del cruce entre caballos de Pura Raza Española y Pura Raza Árabe. Esta combinación ha dado lugar a un caballo con gran resistencia, velocidad y elegancia."
+    },
+    {
+      "id": "asturcon",
+      "name": "Asturcón",
+      "image": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800",
+      "country": "España",
+      "bloodType": "fría",
+      "temperament": "dócil",
+      "height": 120,
+      "uses": ["turismo ecuestre", "terapia"],
+      "history": "El Asturcón es un pony autóctono de Asturias, considerado una de las razas más antiguas de la península ibérica. Aunque estuvo en peligro de extinción, actualmente está en proceso de recuperación."
+    },
+    {
+      "id": "menorquin",
+      "name": "Menorquín",
+      "image": "https://images.unsplash.com/photo-1598976549080-a4a12c6fa0f4?w=800",
+      "country": "España",
+      "bloodType": "caliente",
+      "temperament": "equilibrado",
+      "height": 158,
+      "uses": ["doma menorquina", "paseo", "exhibición"],
+      "history": "El caballo menorquín es originario de la isla de Menorca. Se caracteriza por su pelaje negro azabache y su habilidad para realizar el 'bot', un paso característico en las fiestas tradicionales de Menorca."
+    }
+  ]
+}

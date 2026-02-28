@@ -1,0 +1,88 @@
+{
+  "home": {
+    "hero": {
+      "title": "Into This",
+      "subtitle": "Cuántas pasiones puede tener una única persona en una única vida. ¿Y si la pasión mayor fuera descubrirlo?",
+      "description": "Explora el mundo de los caballos, la danza y la música"
+    },
+    "featuredBreeds": {
+      "title": "Razas Destacadas",
+      "subtitle": "Descubre razas únicas de todo el mundo, desde el espíritu del Andaluz hasta la robustez del Clydesdale"
+    },
+    "features": {
+      "horses": {
+        "title": "Caballos",
+        "description": "Explora razas, genética y la rica historia de estos nobles compañeros"
+      },
+      "dance": {
+        "title": "Baile",
+        "description": "Sumérgete en el arte del movimiento y la expresión a través de la danza"
+      },
+      "music": {
+        "title": "Música",
+        "description": "Descubre la banda sonora de nuestras pasiones y cultura"
+      }
+    }
+  },
+  "breeds": {
+    "title": "Descubre las Razas",
+    "subtitle": "Desde el espíritu del Andaluz hasta la robustez del Clydesdale, explora la increíble diversidad de las razas equinas de todo el mundo",
+    "search": "Buscar razas...",
+    "spanishBreedsOnly": "Solo Razas Españolas",
+    "showOnlySpanish": "Mostrar solo razas de España",
+    "failedToLoad": "Error al cargar las razas",
+    "noBreeds": "No se encontraron razas",
+    "loadingDetails": "Cargando detalles de la raza...",
+    "breedNotFound": "Raza no encontrada",
+    "about": "Acerca de la Raza",
+    "history": "Historia y Orígenes",
+    "primaryUses": "Usos Principales"
+  },
+  "coats": {
+    "title": "Capas de Caballos",
+    "subtitle": "Explora la genética ecuestre y descubre los patrones de herencia del color de las capas",
+    "tabs": {
+      "simple": "Simple (2 Gen)",
+      "advanced": "Avanzado (3 Gen)"
+    },
+    "simulator": {
+      "simple": "Simulador Simple",
+      "advanced": "Simulador de 3 Generaciones"
+    },
+    "colors": {
+      "black": "Negro",
+      "chestnut": "Castaño",
+      "bay": "Bayo",
+      "white": "Blanco"
+    },
+    "generations": {
+      "paternalGrandfather": "Abuelo Paterno",
+      "paternalGrandmother": "Abuela Paterna",
+      "maternalGrandfather": "Abuelo Materno",
+      "maternalGrandmother": "Abuela Materna",
+      "paternalLine": "Línea Paterna",
+      "maternalLine": "Línea Materna",
+      "selectColors": "Selecciona colores"
+    },
+    "commonCoats": "Colores de Capa Comunes",
+    "filterByCategory": "Filtrar por categoría"
+  },
+  "culture": {
+    "title": "Caballos en la Cultura",
+    "subtitle": "Desde los albores de la civilización, los caballos han galopado a través de nuestros mitos, arte y corazones, moldeando la historia humana con cada paso",
+    "categories": {
+      "all": "Todo",
+      "history": "Historia",
+      "psychology": "Psicología",
+      "mythology": "Mitología"
+    }
+  },
+  "media": {
+    "title": "Caballos en la Pantalla",
+    "subtitle": "Desde legendarios caballos de guerra hasta mustangs de espíritu libre, explora las historias ecuestres más icónicas del cine y la televisión"
+  },
+  "notFound": {
+    "title": "404 Página No Encontrada",
+    "message": "¿Olvidaste agregar la página al enrutador?"
+  }
+}

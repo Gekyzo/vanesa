@@ -1,0 +1,62 @@
+{
+  "login": {
+    "title": "Acceso Admin",
+    "subtitle": "Inicia sesión o crea una cuenta para acceder al panel de administración",
+    "tabs": {
+      "login": "Iniciar Sesión",
+      "register": "Registrarse"
+    },
+    "signingIn": "Iniciando sesión...",
+    "creatingAccount": "Creando cuenta..."
+  },
+  "dashboard": {
+    "title": "Panel de Control",
+    "welcome": "Bienvenido al panel de administración. Gestiona el contenido del sitio desde aquí.",
+    "manageCoats": {
+      "title": "Gestionar Capas",
+      "description": "Agregar, editar o eliminar colores de capas de caballos y organizar en categorías"
+    },
+    "manageCategories": {
+      "title": "Gestionar Categorías",
+      "description": "Organizar capas en categorías para una mejor organización"
+    }
+  },
+  "layout": {
+    "title": "Panel Admin",
+    "navigation": "Navegación",
+    "dashboard": "Panel de Control",
+    "coats": "Capas",
+    "categories": "Categorías"
+  },
+  "coats": {
+    "title": "Gestionar Capas de Caballos",
+    "subtitle": "Crear y editar información sobre capas de caballos y gestionar categorías",
+    "createCoat": "Crear Capa",
+    "editCoat": "Editar Capa",
+    "createCoatSubtitle": "Agregar una nueva capa de caballo",
+    "editCoatSubtitle": "Actualizar detalles de la capa",
+    "form": {
+      "spanishName": "Nombre en Español",
+      "englishName": "Nombre en Inglés",
+      "spanishDescription": "Descripción en Español",
+      "englishDescription": "Descripción en Inglés",
+      "imageUrl": "URL de Imagen",
+      "category": "Categoría"
+    }
+  },
+  "categories": {
+    "confirmDelete": "¿Estás seguro de que deseas eliminar esta categoría?"
+  },
+  "notifications": {
+    "coatCreated": "Capa creada exitosamente",
+    "coatUpdated": "Capa actualizada exitosamente",
+    "coatDeleted": "Capa eliminada exitosamente",
+    "categoryCreated": "Categoría creada exitosamente",
+    "categoryUpdated": "Categoría actualizada exitosamente",
+    "categoryDeleted": "Categoría eliminada exitosamente",
+    "logoutSuccess": "Sesión cerrada exitosamente",
+    "failedToSave": "Error al guardar",
+    "failedToDelete": "Error al eliminar",
+    "failedToLogout": "Error al cerrar sesión"
+  }
+}

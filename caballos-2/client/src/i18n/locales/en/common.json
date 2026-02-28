@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "horses": "Horses",
+    "spanishBreeds": "Spanish Breeds",
+    "worldBreeds": "World Breeds",
+    "coats": "Horse Coats",
+    "horsesInCulture": "Horses in Culture",
+    "dance": "Dance",
+    "music": "Music",
+    "admin": "Admin",
+    "manageCoats": "Manage Coats",
+    "manageCategories": "Manage Categories",
+    "logo": "Into This"
+  },
+  "buttons": {
+    "explore": "Explore",
+    "viewAll": "View All",
+    "viewAllBreeds": "View all breeds",
+    "backToBreeds": "Back to Breeds",
+    "watchTrailer": "Watch Trailer",
+    "calculate": "Calculate",
+    "calculateProbabilities": "Calculate Probabilities",
+    "signIn": "Sign In",
+    "register": "Register",
+    "logout": "Logout",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "goToCoats": "Go to Coats",
+    "goToCategories": "Go to Categories"
+  },
+  "common": {
+    "loading": "Loading...",
+    "calculating": "Calculating...",
+    "error": "Error",
+    "success": "Success",
+    "all": "All",
+    "search": "Search",
+    "filters": "Filters",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "description": "Description",
+    "category": "Category",
+    "uncategorized": "Uncategorized",
+    "unknown": "Unknown",
+    "varies": "Varies"
+  },
+  "bloodTypes": {
+    "bloodType": "Blood Type",
+    "allBloodTypes": "All Blood Types",
+    "allTypes": "All Types",
+    "hotBlood": "Hot Blood",
+    "warmBlood": "Warm Blood",
+    "coldBlood": "Cold Blood",
+    "blood": "Blood"
+  },
+  "badges": {
+    "spanishBreed": "Spanish Breed"
+  },
+  "auth": {
+    "orContinueWith": "Or continue with",
+    "google": "Google",
+    "facebook": "Facebook"
+  }
+}

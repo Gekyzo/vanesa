@@ -1,0 +1,18 @@
+{
+  "validation": {
+    "emailInvalid": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "passwordsMismatch": "Passwords don't match",
+    "nameRequired": "Name is required",
+    "fieldRequired": "This field is required"
+  },
+  "api": {
+    "loginFailed": "Login failed",
+    "registrationFailed": "Registration failed",
+    "logoutFailed": "Logout failed",
+    "authError": "Authentication error",
+    "internalError": "Internal Server Error",
+    "failedToLoad": "Failed to load"
+  }
+}

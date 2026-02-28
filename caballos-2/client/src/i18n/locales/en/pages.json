@@ -1,0 +1,88 @@
+{
+  "home": {
+    "hero": {
+      "title": "Into This",
+      "subtitle": "How many passions can a single person have in a single life. What if the greatest passion was discovering them?",
+      "description": "Explore the world of horses, dance, and music"
+    },
+    "featuredBreeds": {
+      "title": "Featured Breeds",
+      "subtitle": "Discover unique breeds from around the globe, from the spirited Andalusian to the sturdy Clydesdale"
+    },
+    "features": {
+      "horses": {
+        "title": "Horses",
+        "description": "Explore breeds, genetics, and the rich history of these noble companions"
+      },
+      "dance": {
+        "title": "Dance",
+        "description": "Immerse yourself in the art of movement and expression through dance"
+      },
+      "music": {
+        "title": "Music",
+        "description": "Discover the soundtrack to our passions and culture"
+      }
+    }
+  },
+  "breeds": {
+    "title": "Discover Breeds",
+    "subtitle": "From the spirited Andalusian to the sturdy Clydesdale, explore the incredible diversity of equine breeds from around the world",
+    "search": "Search breeds...",
+    "spanishBreedsOnly": "Spanish Breeds Only",
+    "showOnlySpanish": "Show only breeds from Spain",
+    "failedToLoad": "Failed to load breeds",
+    "noBreeds": "No breeds found",
+    "loadingDetails": "Loading breed details...",
+    "breedNotFound": "Breed not found",
+    "about": "About the Breed",
+    "history": "History & Origins",
+    "primaryUses": "Primary Uses"
+  },
+  "coats": {
+    "title": "Horse Coats",
+    "subtitle": "Explore equine genetics and discover the inheritance patterns of coat colors",
+    "tabs": {
+      "simple": "Simple (2 Gen)",
+      "advanced": "Advanced (3 Gen)"
+    },
+    "simulator": {
+      "simple": "Simple Simulator",
+      "advanced": "3-Generation Simulator"
+    },
+    "colors": {
+      "black": "Black",
+      "chestnut": "Chestnut",
+      "bay": "Bay",
+      "white": "White"
+    },
+    "generations": {
+      "paternalGrandfather": "Paternal Grandfather",
+      "paternalGrandmother": "Paternal Grandmother",
+      "maternalGrandfather": "Maternal Grandfather",
+      "maternalGrandmother": "Maternal Grandmother",
+      "paternalLine": "Paternal Line",
+      "maternalLine": "Maternal Line",
+      "selectColors": "Select colors"
+    },
+    "commonCoats": "Common Coat Colors",
+    "filterByCategory": "Filter by category"
+  },
+  "culture": {
+    "title": "Horses in Culture",
+    "subtitle": "Since the dawn of civilization, horses have galloped through our myths, art, and hearts, shaping human history with every stride",
+    "categories": {
+      "all": "All",
+      "history": "History",
+      "psychology": "Psychology",
+      "mythology": "Mythology"
+    }
+  },
+  "media": {
+    "title": "Horses on Screen",
+    "subtitle": "From legendary war horses to spirited mustangs, explore the most iconic equestrian stories in film and television"
+  },
+  "notFound": {
+    "title": "404 Page Not Found",
+    "message": "Did you forget to add the page to the router?"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "breeds": [
+    {
+      "id": "arabe",
+      "name": "Árabe",
+      "image": "https://images.unsplash.com/photo-1471965187306-fadf2665a04b?w=800",
+      "country": "Arabia Saudí",
+      "bloodType": "caliente",
+      "temperament": "enérgico",
+      "height": 150,
+      "uses": ["raid", "exhibición", "paseo"],
+      "history": "El caballo árabe es una de las razas más antiguas del mundo, con más de 4.500 años de historia. Conocido por su belleza, resistencia y temperamento, ha influenciado casi todas las razas modernas de caballos."
+    },
+    {
+      "id": "frison",
+      "name": "Frisón",
+      "image": "https://images.unsplash.com/photo-1598714805247-5dd440d87124?w=800",
+      "country": "Países Bajos",
+      "bloodType": "templada",
+      "temperament": "equilibrado",
+      "height": 160,
+      "uses": ["doma clásica", "enganche", "cine"],
+      "history": "El Frisón es originario de Frisia, en los Países Bajos. Se caracteriza por su pelaje negro azabache, crines largas y movimientos elegantes. Es muy popular en doma clásica y en producciones cinematográficas."
+    },
+    {
+      "id": "perchearon",
+      "name": "Percherón",
+      "image": "https://images.unsplash.com/photo-1602899252528-d116de698b0e?w=800",
+      "country": "Francia",
+      "bloodType": "fría",
+      "temperament": "dócil",
+      "height": 165,
+      "uses": ["tiro", "trabajo agrícola", "exhibición"],
+      "history": "El Percherón es un caballo de tiro pesado originario de la región de Le Perche en Francia. Conocido por su fuerza, docilidad y versatilidad, ha sido utilizado históricamente para trabajos agrícolas y transporte."
+    },
+    {
+      "id": "quarter-horse",
+      "name": "Quarter Horse",
+      "image": "https://images.unsplash.com/photo-1553511812-adf95a31bb9d?w=800",
+      "country": "Estados Unidos",
+      "bloodType": "templada",
+      "temperament": "equilibrado",
+      "height": 152,
+      "uses": ["trabajo con ganado", "carreras", "rodeo"],
+      "history": "El Quarter Horse es la raza más popular en Estados Unidos. Su nombre proviene de su habilidad para correr distancias cortas (un cuarto de milla) más rápido que cualquier otra raza. Excelente para trabajo con ganado."
+    },
+    {
+      "id": "appaloosa",
+      "name": "Appaloosa",
+      "image": "https://images.unsplash.com/photo-1534008897995-27a23e859048?w=800",
+      "country": "Estados Unidos",
+      "bloodType": "templada",
+      "temperament": "equilibrado",
+      "height": 150,
+      "uses": ["trabajo con ganado", "paseo", "exhibición"],
+      "history": "El Appaloosa es conocido por su patrón de manchas distintivo. Desarrollado por la tribu Nez Perce en el noroeste de Estados Unidos, es apreciado por su versatilidad y resistencia."
+    },
+    {
+      "id": "lipizzano",
+      "name": "Lipizzano",
+      "image": "https://images.unsplash.com/photo-1598978273066-664c9f3a0a5b?w=800",
+      "country": "Austria",
+      "bloodType": "caliente",
+      "temperament": "equilibrado",
+      "height": 158,
+      "uses": ["alta escuela", "doma clásica"],
+      "history": "El Lipizzano es famoso por ser la raza de la Escuela Española de Equitación en Viena. Conocidos por nacer oscuros y volverse grises con la edad, son maestros de la alta escuela clásica."
+    }
+  ]
+}

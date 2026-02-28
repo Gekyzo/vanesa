@@ -1,0 +1,62 @@
+{
+  "login": {
+    "title": "Admin Access",
+    "subtitle": "Sign in or create an account to access the admin panel",
+    "tabs": {
+      "login": "Login",
+      "register": "Register"
+    },
+    "signingIn": "Signing in...",
+    "creatingAccount": "Creating account..."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to the admin panel. Manage your site content from here.",
+    "manageCoats": {
+      "title": "Manage Coats",
+      "description": "Add, edit, or remove horse coat colors and organize into categories"
+    },
+    "manageCategories": {
+      "title": "Manage Categories",
+      "description": "Organize coats into categories for better organization"
+    }
+  },
+  "layout": {
+    "title": "Admin Panel",
+    "navigation": "Navigation",
+    "dashboard": "Dashboard",
+    "coats": "Coats",
+    "categories": "Categories"
+  },
+  "coats": {
+    "title": "Manage Horse Coats",
+    "subtitle": "Create and edit horse coat information and manage categories",
+    "createCoat": "Create Coat",
+    "editCoat": "Edit Coat",
+    "createCoatSubtitle": "Add a new horse coat",
+    "editCoatSubtitle": "Update coat details",
+    "form": {
+      "spanishName": "Spanish Name",
+      "englishName": "English Name",
+      "spanishDescription": "Spanish Description",
+      "englishDescription": "English Description",
+      "imageUrl": "Image URL",
+      "category": "Category"
+    }
+  },
+  "categories": {
+    "confirmDelete": "Are you sure you want to delete this category?"
+  },
+  "notifications": {
+    "coatCreated": "Coat created successfully",
+    "coatUpdated": "Coat updated successfully",
+    "coatDeleted": "Coat deleted successfully",
+    "categoryCreated": "Category created successfully",
+    "categoryUpdated": "Category updated successfully",
+    "categoryDeleted": "Category deleted successfully",
+    "logoutSuccess": "Logged out successfully",
+    "failedToSave": "Failed to save",
+    "failedToDelete": "Failed to delete",
+    "failedToLogout": "Failed to logout"
+  }
+}

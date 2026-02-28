@@ -1,0 +1,565 @@
+import { Navigation } from "@/components/Navigation";
+import { useCoats, useSimulateCoat } from "@/hooks/use-coats";
+import { Card, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Dna, RefreshCw, ArrowDown, ChevronDown, ChevronUp, Palette, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+import { motion, AnimatePresence } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { Coat } from "@shared/schema";
+
+const COLORS = ['#8b4513', '#d2b48c', '#000000', '#f5f5dc', '#a0522d', '#cd853f'];
+
+type CoatColor = "" | "black" | "chestnut" | "bay" | "white";
+
+interface CoatResult {
+  name: string;
+  value: number;
+}
+
+export default function Coats() {
+  const { data: coats, isLoading } = useCoats();
+  const simulate = useSimulateCoat();
+
+  // Simple mode (2 generations)
+  const [simpleSire, setSimpleSire] = useState<CoatColor>("");
+  const [simpleDam, setSimpleDam] = useState<CoatColor>("");
+  const [simpleResults, setSimpleResults] = useState<CoatResult[] | null>(null);
+
+  // Advanced mode (3 generations)
+  // Generation 1 (Grandparents)
+  const [gen1SireGrandpa, setGen1SireGrandpa] = useState<CoatColor>("");
+  const [gen1SireGrandma, setGen1SireGrandma] = useState<CoatColor>("");
+  const [gen1DamGrandpa, setGen1DamGrandpa] = useState<CoatColor>("");
+  const [gen1DamGrandma, setGen1DamGrandma] = useState<CoatColor>("");
+
+  // Generation 2 (Parents) - calculated from Gen 1
+  const [gen2SireResult, setGen2SireResult] = useState<CoatResult[] | null>(null);
+  const [gen2DamResult, setGen2DamResult] = useState<CoatResult[] | null>(null);
+
+  // Generation 3 (Offspring) - final result
+  const [gen3Result, setGen3Result] = useState<CoatResult[] | null>(null);
+
+  // Simulate simple 2-generation breeding
+  const handleSimpleSimulate = async () => {
+    if (!simpleSire || !simpleDam) return;
+    try {
+      const res = await simulate.mutateAsync({ sireColor: simpleSire, damColor: simpleDam });
+      setSimpleResults(res.probabilities.map((p: any) => ({
+        name: p.colorName,
+        value: p.percentage
+      })));
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  // Simulate 3-generation breeding
+  const handleAdvancedSimulate = async () => {
+    if (!gen1SireGrandpa || !gen1SireGrandma || !gen1DamGrandpa || !gen1DamGrandma) return;
+
+    try {
+      // Step 1: Calculate Gen 2 Sire (from paternal grandparents)
+      const gen2SireCalc = await simulate.mutateAsync({
+        sireColor: gen1SireGrandpa,
+        damColor: gen1SireGrandma
+      });
+      const gen2SireData = gen2SireCalc.probabilities.map((p: any) => ({
+        name: p.colorName,
+        value: p.percentage
+      }));
+      setGen2SireResult(gen2SireData);
+
+      // Step 2: Calculate Gen 2 Dam (from maternal grandparents)
+      const gen2DamCalc = await simulate.mutateAsync({
+        sireColor: gen1DamGrandpa,
+        damColor: gen1DamGrandma
+      });
+      const gen2DamData = gen2DamCalc.probabilities.map((p: any) => ({
+        name: p.colorName,
+        value: p.percentage
+      }));
+      setGen2DamResult(gen2DamData);
+
+      // Step 3: Use most likely colors from Gen 2 to calculate Gen 3
+      // Get the most probable coat colors from Gen 2 parents
+      const mostLikelySire = gen2SireData.reduce((prev: CoatResult, curr: CoatResult) =>
+        prev.value > curr.value ? prev : curr
+      );
+      const mostLikelyDam = gen2DamData.reduce((prev: CoatResult, curr: CoatResult) =>
+        prev.value > curr.value ? prev : curr
+      );
+
+      // Map display names back to API color codes
+      const colorMap: Record<string, CoatColor> = {
+        'Black': 'black',
+        'Chestnut': 'chestnut',
+        'Bay': 'bay',
+        'White': 'white'
+      };
+
+      const gen3SireColor = colorMap[mostLikelySire.name] || 'bay';
+      const gen3DamColor = colorMap[mostLikelyDam.name] || 'bay';
+
+      // Calculate Gen 3 offspring
+      const gen3Calc = await simulate.mutateAsync({
+        sireColor: gen3SireColor,
+        damColor: gen3DamColor
+      });
+      const gen3Data = gen3Calc.probabilities.map((p: any) => ({
+        name: p.colorName,
+        value: p.percentage
+      }));
+      setGen3Result(gen3Data);
+
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleReset = () => {
+    setGen1SireGrandpa("");
+    setGen1SireGrandma("");
+    setGen1DamGrandpa("");
+    setGen1DamGrandma("");
+    setGen2SireResult(null);
+    setGen2DamResult(null);
+    setGen3Result(null);
+  };
+
+  const CoatSelector = ({ value, onChange, label }: { value: CoatColor; onChange: (v: CoatColor) => void; label: string }) => (
+    <div className="space-y-2">
+      <Label className="text-sm">{label}</Label>
+      <Select onValueChange={onChange} value={value}>
+        <SelectTrigger className="h-11">
+          <SelectValue placeholder="Seleccionar" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="black">Negro</SelectItem>
+          <SelectItem value="chestnut">Castaño</SelectItem>
+          <SelectItem value="bay">Bayo</SelectItem>
+          <SelectItem value="white">Blanco</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+
+  const ResultChart = ({ data, title }: { data: CoatResult[] | null; title: string }) => (
+    <div className="bg-background rounded-2xl p-6 border border-border h-[350px] flex items-center justify-center">
+      {data ? (
+        <div className="w-full h-full">
+          <h3 className="text-center font-bold text-lg mb-4">{title}</h3>
+          <ResponsiveContainer width="100%" height="85%">
+            <PieChart>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={50}
+                outerRadius={85}
+                fill="#8884d8"
+                paddingAngle={5}
+                dataKey="value"
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+              >
+                {data.map((_entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend verticalAlign="bottom" height={36}/>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      ) : (
+        <div className="text-center text-muted-foreground opacity-60">
+          <Dna className="h-16 w-16 mx-auto mb-4" />
+          <p>Selecciona colores</p>
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-background pb-20">
+      <Navigation />
+
+      {/* Header */}
+      <div className="bg-gradient-to-br from-secondary/20 via-secondary/10 to-background py-20 mb-16 border-b border-border/50">
+        <div className="container mx-auto text-center space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="font-display text-5xl md:text-6xl font-bold text-primary mb-4">
+              Genética de Capas Equinas
+            </h1>
+            <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+              Explora la herencia genética detrás de cada color y simula probabilidades de cría
+            </p>
+          </motion.div>
+
+          {/* Quick navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap gap-4 justify-center pt-8"
+          >
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
+              className="h-12"
+            >
+              <Dna className="mr-2 h-5 w-5" />
+              Ver Catálogo de Capas
+            </Button>
+            <Button
+              size="lg"
+              onClick={() => document.getElementById('simulator')?.scrollIntoView({ behavior: 'smooth' })}
+              className="h-12 bg-secondary hover:bg-secondary/90"
+            >
+              <RefreshCw className="mr-2 h-5 w-5" />
+              Simulador Genético
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container mx-auto space-y-24">
+
+        {/* Simulator Section */}
+        <section id="simulator" className="bg-card border border-border rounded-3xl p-8 md:p-12 shadow-xl shadow-black/5">
+          <Tabs defaultValue="simple" className="w-full">
+            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+              <TabsTrigger value="simple">Simple (2 Gen)</TabsTrigger>
+              <TabsTrigger value="advanced">Avanzado (3 Gen)</TabsTrigger>
+            </TabsList>
+
+            {/* Simple Mode: 2 Generations */}
+            <TabsContent value="simple">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-8">
+                  <h2 className="font-display text-3xl font-bold text-primary">Simulador Simple</h2>
+                  <p className="text-muted-foreground text-lg">
+                    Selecciona el color de capa del padre y la madre para ver las probabilidades del potro.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-6">
+                    <CoatSelector value={simpleSire} onChange={setSimpleSire} label="Padre" />
+                    <CoatSelector value={simpleDam} onChange={setSimpleDam} label="Madre" />
+                  </div>
+
+                  <Button
+                    onClick={handleSimpleSimulate}
+                    disabled={!simpleSire || !simpleDam || simulate.isPending}
+                    size="lg"
+                    className="w-full h-14 text-lg font-bold bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/25"
+                  >
+                    {simulate.isPending ? (
+                      <>Calculando...</>
+                    ) : (
+                      <>
+                        <RefreshCw className="mr-2 h-5 w-5" /> Calcular Probabilidades
+                      </>
+                    )}
+                  </Button>
+                </div>
+
+                <ResultChart data={simpleResults} title="Probabilidades del Potro" />
+              </div>
+            </TabsContent>
+
+            {/* Advanced Mode: 3 Generations */}
+            <TabsContent value="advanced">
+              <div className="space-y-12">
+                <div className="text-center space-y-4">
+                  <h2 className="font-display text-3xl font-bold text-primary">Simulador de 3 Generaciones</h2>
+                  <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+                    Ingresa los colores de los cuatro abuelos para ver cómo se heredan las capas a través de tres generaciones.
+                  </p>
+                </div>
+
+                {/* Generation 1: Grandparents */}
+                <div className="space-y-6">
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">1</div>
+                    <h3 className="font-display text-xl font-bold">Generación 1: Abuelos</h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-4 p-6 rounded-xl bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900">
+                      <h4 className="font-semibold text-center">Línea Paterna</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <CoatSelector value={gen1SireGrandpa} onChange={setGen1SireGrandpa} label="Abuelo Paterno" />
+                        <CoatSelector value={gen1SireGrandma} onChange={setGen1SireGrandma} label="Abuela Paterna" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 p-6 rounded-xl bg-pink-50 dark:bg-pink-950/20 border border-pink-200 dark:border-pink-900">
+                      <h4 className="font-semibold text-center">Línea Materna</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <CoatSelector value={gen1DamGrandpa} onChange={setGen1DamGrandpa} label="Abuelo Materno" />
+                        <CoatSelector value={gen1DamGrandma} onChange={setGen1DamGrandma} label="Abuela Materna" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <ArrowDown className="h-8 w-8 text-primary animate-bounce" />
+                </div>
+
+                {/* Generation 2: Parents Results */}
+                {(gen2SireResult || gen2DamResult) && (
+                  <>
+                    <div className="space-y-6">
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">2</div>
+                        <h3 className="font-display text-xl font-bold">Generación 2: Padres (Resultados)</h3>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <ResultChart data={gen2SireResult} title="Padre Potencial" />
+                        <ResultChart data={gen2DamResult} title="Madre Potencial" />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center">
+                      <ArrowDown className="h-8 w-8 text-primary animate-bounce" />
+                    </div>
+                  </>
+                )}
+
+                {/* Generation 3: Final Offspring */}
+                {gen3Result && (
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-center gap-2">
+                      <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">3</div>
+                      <h3 className="font-display text-xl font-bold">Generación 3: Potro Final</h3>
+                    </div>
+
+                    <div className="max-w-2xl mx-auto">
+                      <ResultChart data={gen3Result} title="Probabilidades del Potro Final" />
+                    </div>
+                  </div>
+                )}
+
+                {/* Control Buttons */}
+                <div className="flex gap-4 justify-center">
+                  <Button
+                    onClick={handleAdvancedSimulate}
+                    disabled={!gen1SireGrandpa || !gen1SireGrandma || !gen1DamGrandpa || !gen1DamGrandma || simulate.isPending}
+                    size="lg"
+                    className="h-14 text-lg font-bold bg-secondary hover:bg-secondary/90 shadow-lg shadow-secondary/25 px-12"
+                  >
+                    {simulate.isPending ? (
+                      <>Calculando 3 Generaciones...</>
+                    ) : (
+                      <>
+                        <RefreshCw className="mr-2 h-5 w-5" /> Simular 3 Generaciones
+                      </>
+                    )}
+                  </Button>
+
+                  {gen3Result && (
+                    <Button
+                      onClick={handleReset}
+                      variant="outline"
+                      size="lg"
+                      className="h-14 text-lg px-8"
+                    >
+                      Reiniciar
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </section>
+
+        {/* Coats Gallery - Poster Style */}
+        <section id="gallery">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-primary">
+              Genética de Capas
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+              Descubre la herencia genética detrás de cada color de capa ecuestre
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {isLoading ? (
+               [1,2,3,4,5,6,7,8].map(i => <div key={i} className="h-[500px] bg-muted animate-pulse rounded-2xl" />)
+            ) : (
+              coats?.map((coat, idx) => (
+                <motion.div
+                  key={coat.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="group"
+                >
+                  <Card className="overflow-hidden h-full hover:shadow-2xl transition-all duration-300 border-2 border-border/60 hover:border-primary/30 bg-gradient-to-br from-card to-card/80">
+                    {/* Image Section - Larger, poster-like */}
+                    <div className="relative h-72 overflow-hidden bg-gradient-to-br from-muted/50 to-muted">
+                      <img
+                        src={coat.imageUrl}
+                        alt={coat.name}
+                        className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-700"
+                      />
+                      {/* Gradient overlay for better text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+                      {/* Coat name overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 className="font-display text-2xl font-bold text-white drop-shadow-lg">
+                          {coat.name}
+                        </h3>
+                        {coat.englishName && (
+                          <p className="text-white/90 text-sm font-medium mt-1">
+                            {coat.englishName}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Genetics Info Section - Prominent */}
+                    <div className="p-6 space-y-4 bg-gradient-to-b from-card to-muted/10">
+                      {/* Primary Genetic Info */}
+                      {coat.geneticBase && (
+                        <div className="bg-primary/10 border-2 border-primary/30 rounded-xl p-4 text-center">
+                          <p className="text-xs font-semibold text-primary/70 uppercase tracking-wider mb-1">
+                            Genotipo
+                          </p>
+                          <p className="text-2xl font-mono font-bold text-primary">
+                            {coat.geneticBase}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Additional Genetics */}
+                      <div className="grid grid-cols-2 gap-2">
+                        {coat.extensionGene && (
+                          <div className="bg-muted/50 rounded-lg p-2 text-center border border-border/50">
+                            <p className="text-[10px] font-semibold text-muted-foreground uppercase">
+                              Extension
+                            </p>
+                            <p className="text-sm font-mono font-bold text-foreground">
+                              {coat.extensionGene}
+                            </p>
+                          </div>
+                        )}
+                        {coat.agoutiGene && (
+                          <div className="bg-muted/50 rounded-lg p-2 text-center border border-border/50">
+                            <p className="text-[10px] font-semibold text-muted-foreground uppercase">
+                              Agutí
+                            </p>
+                            <p className="text-sm font-mono font-bold text-foreground">
+                              {coat.agoutiGene}
+                            </p>
+                          </div>
+                        )}
+                        {coat.creamGene && coat.creamGene !== 'N/N' && (
+                          <div className="bg-amber-500/10 rounded-lg p-2 text-center border border-amber-500/30">
+                            <p className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase">
+                              Crema
+                            </p>
+                            <p className="text-sm font-mono font-bold text-amber-900 dark:text-amber-300">
+                              {coat.creamGene}
+                            </p>
+                          </div>
+                        )}
+                        {coat.dunGene && coat.dunGene !== 'N/N' && (
+                          <div className="bg-yellow-500/10 rounded-lg p-2 text-center border border-yellow-500/30">
+                            <p className="text-[10px] font-semibold text-yellow-700 dark:text-yellow-400 uppercase">
+                              Dun
+                            </p>
+                            <p className="text-sm font-mono font-bold text-yellow-900 dark:text-yellow-300">
+                              {coat.dunGene}
+                            </p>
+                          </div>
+                        )}
+                        {coat.silverGene && coat.silverGene !== 'N/N' && (
+                          <div className="bg-slate-500/10 rounded-lg p-2 text-center border border-slate-500/30">
+                            <p className="text-[10px] font-semibold text-slate-700 dark:text-slate-400 uppercase">
+                              Plata
+                            </p>
+                            <p className="text-sm font-mono font-bold text-slate-900 dark:text-slate-300">
+                              {coat.silverGene}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Phenotype badges */}
+                      <div className="flex flex-wrap gap-2">
+                        {coat.isDilution && (
+                          <Badge variant="secondary" className="text-xs">
+                            Dilución
+                          </Badge>
+                        )}
+                        {coat.isPattern && (
+                          <Badge variant="secondary" className="text-xs">
+                            Patrón
+                          </Badge>
+                        )}
+                        {coat.isLethal && (
+                          <Badge variant="destructive" className="text-xs">
+                            ⚠️ Letal
+                          </Badge>
+                        )}
+                        {coat.primitiveMarkings && (
+                          <Badge variant="outline" className="text-xs">
+                            Marcas Primitivas
+                          </Badge>
+                        )}
+                      </div>
+
+                      {/* Description - Shorter */}
+                      <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                        {coat.description}
+                      </p>
+
+                      {/* Phenotype details */}
+                      {(coat.bodyColor || coat.maneColor) && (
+                        <div className="pt-3 border-t border-border/50 space-y-1.5 text-xs">
+                          {coat.bodyColor && (
+                            <div className="flex items-start gap-2">
+                              <span className="font-semibold text-muted-foreground min-w-[60px]">Cuerpo:</span>
+                              <span className="text-foreground/80">{coat.bodyColor}</span>
+                            </div>
+                          )}
+                          {coat.maneColor && (
+                            <div className="flex items-start gap-2">
+                              <span className="font-semibold text-muted-foreground min-w-[60px]">Crines:</span>
+                              <span className="text-foreground/80">{coat.maneColor}</span>
+                            </div>
+                          )}
+                          {coat.eyeColor && (
+                            <div className="flex items-start gap-2">
+                              <span className="font-semibold text-muted-foreground min-w-[60px]">Ojos:</span>
+                              <span className="text-foreground/80">{coat.eyeColor}</span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </Card>
+                </motion.div>
+              ))
+            )}
+          </div>
+        </section>
+
+      </div>
+    </div>
+  );
+}
